@@ -1,0 +1,130 @@
+#Ejercicio 1 ADIVINA EL NUMERO CON INTENTOS LIMITADOS
+
+import random
+numero = random.randint(1,50)
+intentos = 0
+print("BIENVENIDO AL JUEGO")
+print("Tienes que adivinar el numero entre 1 y 50" )
+while intentos <5:
+    adivina = int(input("Introduce tu numero: "))
+    if adivina < numero:
+        print("El numero es mayor")
+    elif adivina > numero:
+        print("El numero es menor")
+    else:
+        print("Felicidades, has adivinado el numero!")
+        print("El numero era:", numero)
+        print("Lo lograste en", intentos+1, "intentos.")
+        print("Gracias por jugar.")       
+        break
+    intentos += 1
+if intentos == 5:
+    print("Lo siento, has agotado tus intentos. El numero era:", numero)
+
+#Ejercicio 2 NUMERO SECRETO AJUSTADO
+import random
+base = random.randint(10,99)
+print("BIENVENIDO AL JUEGO")
+print("Tienes que adivinar el numero entre 10 y 99" )
+secreto=(base *2)+7-(base % 5)
+intentos = 0
+while intentos <3:
+    adivina= int(input("Introduce tu numero: "))
+    intentos += 1
+    if adivina!=secreto:
+        print("Numero incorrecto, intenta de nuevo.")
+    if adivina == secreto:
+        print("Felicidades, has adivinado el numero!")
+        print("El numero era:", secreto)
+        print("Lo lograste en", intentos, "intentos.")
+        print("Gracias por jugar.")       
+        break
+    elif intentos ==2:
+        print("Te dare una pista: la base del numero secreto es:", base)
+if intentos == 3:
+    print("No has adivinado el numero, gracias por jugar.")
+    print("El numero secreto era:", secreto)
+    print("Su formula es: (base *2)+7-(base % 5)")
+
+#Ejercicio 3 Descuento por monto de compra
+
+monto = int(input("Ingrese el monto de su compra :"))
+if monto <10000:
+    descuento = monto*0
+elif monto >=10000 and monto <30000:
+    descuento = monto*0.05
+elif monto >=30000 and monto <70000:
+    descuento = monto*0.1
+else:
+    descuento = monto*0.15
+total = monto - descuento
+print("El monto de su compra es:", monto)
+print("El descuento aplicado es:", descuento)
+print("")
+
+
+#Ejercicio 4 Recargo aleatorio por tarjeta de credito
+import random
+monto = int(input("Ingrese el monto de su compra :"))
+recargo = random.randint(1,12)
+valor_recargo = 0
+if recargo == 1:
+    print("Recargo por tarjeta de credito: 0%")
+    total = monto 
+elif recargo >=2 and recargo <=3:
+    print("Recargo por tarjeta de credito: 3%")
+    valor_recargo = monto * 0.03
+    total = monto + valor_recargo
+elif recargo >=4 and recargo <=6:
+    print("Recargo por tarjeta de credito: 8%")
+    valor_recargo = monto * 0.08
+    total = monto + valor_recargo
+elif recargo >=7 and recargo <=9:
+    print("Recargo por tarjeta de credito: 14%")
+    valor_recargo = monto * 0.14
+    total = monto + valor_recargo
+elif recargo >=10 and recargo <=12:
+    print("Recargo por tarjeta de credito: 22%")
+    valor_recargo = monto * 0.22
+    total = monto + valor_recargo
+print("El monto de su compra es:", monto)
+print("El recargo por tarjeta de credito es:", valor_recargo)
+print("El monto total a pagar es:", total)
+
+
+
+#Ejercicio 5 Calculadora de IVA
+import random
+
+print("CALCULADORA DE IVA CON 5 PRECIOS ALEATORIOS")
+print("=" * 80)
+print(f"{'Neto':>10} | {'IVA (19%)':>10} | {'Cargo/Desc':>12} | {'Total':>10}")
+print("=" * 80)
+
+total_acumulado = 0
+
+for i in range(5):
+    neto = random.randint(1000, 50000)
+    iva = neto * 0.19
+    ajuste = 0
+    
+    if neto < 5000:
+        # IVA 19% solamente
+        ajuste = 0
+        precio_final = neto + iva
+    elif neto >= 5000 and neto < 20000:
+        # IVA 19% + cargo servicio 2%
+        cargo_servicio = neto * 0.02
+        ajuste = cargo_servicio
+        precio_final = neto + iva + cargo_servicio
+    else:
+        # IVA 19% + descuento 5%
+        descuento = neto * 0.05
+        ajuste = -descuento
+        precio_final = neto + iva - descuento
+    
+    total_acumulado += precio_final
+    print(f"${neto:>9} | ${iva:>9.2f} | ${ajuste:>11.2f} | ${precio_final:>9.2f}")
+
+print("=" * 80)
+print(f"TOTAL ACUMULADO: ${total_acumulado:.2f}")
