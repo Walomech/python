@@ -7,13 +7,14 @@ cant = int(input("Ingrese cantidad de participantes: "))
 nombres = []
 
 for i in range(cant):
-    nombre = input("Ingrese nombre del participante: ")
+    nombre = input(f"Ingrese nombre del participante {i + 1}: ")
     nombres.append(nombre)
 
 print(f"La cantidad de participantes es: {cant}")
 print("Los participantes son:")
 
-for nombre in nombres:
-    print(nombre)
+for i in range(cant):
+    print(f"Participante {i + 1}: {nombres[i]}")
+
 
   
